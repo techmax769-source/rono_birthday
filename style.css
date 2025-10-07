@@ -1,0 +1,151 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #007bff, #00c6ff);
+  font-family: "Consolas", "Monaco", "Courier New", monospace;
+  color: #fff;
+  overflow-x: hidden;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 🎵 Audio button */
+.audio-container {
+  margin-top: 15px;
+}
+
+#play-button {
+  background: linear-gradient(90deg, #ff66cc, #ffcc00);
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 12px 28px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 102, 204, 0.4);
+}
+
+#play-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(255, 102, 204, 0.6);
+}
+
+/* 💻 Typing Code */
+#code {
+  background: rgba(255, 255, 255, 0.9);
+  color: #222;
+  font-size: 14px;
+  line-height: 1.6;
+  padding: 15px 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  margin: 20px auto;
+  max-width: 90%;
+  text-align: left;
+}
+
+#code .string {
+  color: #0078ff;
+}
+
+#code .keyword {
+  color: #a83279;
+  font-weight: bold;
+}
+
+#code .comments {
+  color: #0b875b;
+  font-style: italic;
+}
+
+/* 🎂 Centered Birthday Photo with Glow */
+#birthday-image {
+  display: none;
+  opacity: 0;
+  width: 80%;
+  max-width: 280px;
+  border-radius: 16px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.6),
+              0 0 40px rgba(255, 102, 204, 0.5),
+              0 0 60px rgba(255, 204, 0, 0.4);
+  transform: translateY(40px) scale(0.95);
+  transition: all 1.5s ease;
+}
+
+#birthday-image.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* ✨ Glowing Birthday Text */
+#hbd-text {
+  display: none;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 0 10px #ffcc00, 0 0 20px #ff6699;
+  margin-top: 15px;
+  opacity: 0;
+  animation: glowPulse 2.5s ease-in-out infinite alternate;
+  transition: opacity 1.5s ease;
+}
+
+#hbd-text.show {
+  display: block;
+  opacity: 1;
+}
+
+/* Glow Animation */
+@keyframes glowPulse {
+  from {
+    text-shadow: 0 0 5px #ffcc00, 0 0 10px #ff6699;
+  }
+  to {
+    text-shadow: 0 0 20px #ffcc00, 0 0 40px #ff6699;
+  }
+}
+
+/* 💬 Footer */
+#footer {
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+  margin-top: auto;
+  padding: 15px 0;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+#footer a {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+#footer a:hover {
+  color: #ffd700;
+}
+
+/* 🌐 Mobile */
+@media (max-width: 600px) {
+  #code {
+    font-size: 13px;
+    padding: 12px;
+  }
+
+  #hbd-text {
+    font-size: 1.4rem;
+  }
+
+  #birthday-image {
+    width: 90%;
+    max-width: 240px;
+  }
+}
