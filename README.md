@@ -22,7 +22,7 @@ This project is a **personalized animated birthday web page** built with
 - 🎊 **Falling confetti** effect  
 - 🤞 Glowing text and buttons  
 - 🧑‍💻 A short self-coded birthday console message  
-- 💖 Footer with soft glow copyright
+- 💖 Footer
 
 ---
 
