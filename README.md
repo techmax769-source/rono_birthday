@@ -52,7 +52,7 @@ This project is a **personalized animated birthday web page** built with
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/happy-birthday-rono.git
+git clone https://github.com/techmax769-source/happy-birthday-rono.git
 
 # Open in your browser
 cd happy-birthday-rono
