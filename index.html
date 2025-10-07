@@ -1,51 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="utf-8" />
     <title>Happy Birthday Rono</title>
+    <meta charset="utf-8" />
+    <meta name="language" content="en-us" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <style type="text/css">
+      * {
+        background: #fff;
+      }
+
+      #loveHeart {
+        background: transparent;
+        background: url("smile.gif") no-repeat center;
+        background-size: contain;
+      }
+
+      #copyright {
+        font-family: "Montserrat", sans-serif;
+      }
+
+      #copyright a {
+        text-decoration: none;
+      }
+
+      #copyright a:hover {
+        text-decoration: none;
+        color: royalblue;
+      }
+
+      #hbd_song {
+        display: none;
+      }
+
+      #disc {
+        color: #999;
+        font-weight: 600;
+        font-size: 13px;
+      }
+    </style>
+
+    <link href="css/style1.css" type="text/css" rel="stylesheet" />
     <link
-      href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap"
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap"
       rel="stylesheet"
     />
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/birthday.js"></script>
+    <script type="text/javascript" src="js/hbd.js"></script>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css"
     />
-    <link href="style1.css" type="text/css" rel="stylesheet" />
-
-    <script src="js/jquery.js"></script>
-    <script src="js/birthday.js"></script>
-    <script src="js/hbd.js"></script>
   </head>
 
   <body>
-    <div class="section">
-      <!-- 🎵 Custom Audio Button -->
-      <div class="has-text-centered">
-        <script>
-const playButton = document.getElementById("playButton");
-const song = document.getElementById("hbd_song");
-let playing = false;
-
-playButton.addEventListener("click", function () {
-  if (!playing) {
-    song.play();
-    playButton.textContent = "⏸ Pause Music";
-    playButton.classList.add("playing");
-    playing = true;
-  } else {
-    song.pause();
-    playButton.textContent = "▶ Play Birthday Song";
-    playButton.classList.remove("playing");
-    playing = false;
-  }
-});
-</script>
+    <div style="padding-top: 10px;" class="section">
+      <div class="columns">
+        <div class="column is-12">
+          <center>
+            <audio controls loop>
+              <source src="song.mp3" type="audio/mpeg" />
+            </audio>
+            <br />
+            <span id="disc"
+              >Disclaimer: Hey Man, autoplay got stuck again! Just play it
+              manually, scroll your screen, and enjoy! For best experience, use
+              a laptop 🎧</span
+            >
+          </center>
+        </div>
       </div>
 
-      <br /><br />
+      <br />
+      <br />
 
       <div class="columns">
         <div id="code" class="column is-6 is-offset-2">
@@ -63,29 +92,31 @@ playButton.addEventListener("click", function () {
             >"Rono"</span
           >);<br />
           <span class="comments"
-            >// When the bell rings, your age increases</span
-          ><br />
+            >// May 28th, when the bell rang, your age increased</span
+          >
+          <br />
           Date currentTime = <span class="keyword">new</span> Date(); <br />
-          SimpleDateFormat formatter =
-          <span class="keyword">new</span> SimpleDateFormat(
-          <span class="string">"yyyy-MM-dd HH:mm:ss"</span>);<br />
+          SimpleDateFormat formatter = <span class="keyword">new</span>
+          SimpleDateFormat(<span class="string"
+            >"yyyy-MM-dd HH:mm:ss"</span
+          >);<br />
           String dateString = formatter.format(currentTime);<br />
           if (dateString.equals(<span class="string"
             >"2020-05-29 00:00:00"</span
           >)) {<br />
-          u.age++;<br />
+          &nbsp;&nbsp;u.age++;<br />
           }<br />
           <span class="comments"
             >// My best wishes will be with you simultaneously.</span
           ><br />
           <span class="keyword">new</span> Thread() {<br />
-          @Override<br />
+          @Override <br />
           <span class="comments">// Forever and ever. I wish</span><br />
           while (true) {<br />
           <span class="comments">// luckiness,</span><br />
-          u.fortune++;<br />
+          &nbsp;&nbsp;u.fortune++;<br />
           <span class="comments">// happiness,</span><br />
-          u.happiness++;<br />
+          &nbsp;&nbsp;u.happiness++;<br />
           <span class="comments"
             >// and everything you wish can be achieved.</span
           ><br />
@@ -94,7 +125,6 @@ playButton.addEventListener("click", function () {
           <span class="comments">// The last thing I wanna say:</span><br />
           System.out.println(<span class="string">"Happy Birthday!"</span>);
         </div>
-
         <div id="loveHeart" class="is-4 column">
           <canvas id="garden" style="display: none"></canvas>
         </div>
@@ -103,43 +133,23 @@ playButton.addEventListener("click", function () {
       <br />
       <hr />
 
-      <!-- 🎂 Image Section -->
-      <div class="centered-image-container">
-        <img
-          src="https://files.catbox.moe/dy4iy4.jpg"
-          alt="Happy Birthday Rono"
-          class="birthday-img"
-        />
-      </div>
-
-      <!-- ❤️ Footer -->
       <div class="columns">
         <div class="column is-12" id="copyright">
           <center>
-            <p>Made with ❤️ by Rono</p>
+            <p>
+              Made with ❤️ by
+              <a
+                href="https://www.facebook.com/smilegupta.1998"
+                target="_blank"
+                >Smile Gupta</a
+              >
+            </p>
           </center>
         </div>
       </div>
     </div>
 
-    <!-- 🎵 Audio Button Script -->
-    <script>
-      const playButton = document.getElementById("playButton");
-      const song = document.getElementById("hbd_song");
-      let playing = false;
-
-      playButton.addEventListener("click", function () {
-        if (!playing) {
-          song.play();
-          playButton.textContent = "⏸ Pause Music";
-          playing = true;
-        } else {
-          song.pause();
-          playButton.textContent = "▶ Play Birthday Song";
-          playing = false;
-        }
-      });
-
+    <script type="text/javascript">
       var offsetX = $("#loveHeart").width() / 2;
       var offsetY = $("#loveHeart").height() / 2 - 55;
       var together = new Date();
@@ -152,7 +162,7 @@ playButton.addEventListener("click", function () {
       if (!document.createElement("canvas").getContext) {
         var msg = document.createElement("div");
         msg.id = "errorMsg";
-        msg.innerHTML = "Sorry, your browser doesn't support this!";
+        msg.innerHTML = "Sorry, browser doesn't support this!";
         document.body.appendChild(msg);
         $("#code").css("display", "none");
         $("#copyright").css("position", "absolute");
