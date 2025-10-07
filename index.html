@@ -1,126 +1,299 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Happy Birthday Rono</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Happy Birthday Rono 🎉</title>
+
+    <!-- Fonts -->
     <link
-      href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Pacifico&display=swap"
       rel="stylesheet"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css"
-    />
-    <link href="style.css" rel="stylesheet" />
-    <script src="js/jquery.js"></script>
-    <script src="js/birthday.js"></script>
-    <script src="js/hbd.js"></script>
+
+    <style>
+      body {
+        font-family: "Fira Code", monospace;
+        background: linear-gradient(90deg, #007bff 20%, #ffffff 60%, #007bff 20%);
+        margin: 0;
+        overflow-x: hidden;
+      }
+
+      canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .section {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      /* 🎶 Play Button */
+      #play-button {
+        background: linear-gradient(135deg, #ff80ab, #ff4081);
+        color: white;
+        border: none;
+        padding: 12px 28px;
+        border-radius: 50px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 1rem;
+        box-shadow: 0 4px 15px rgba(255, 64, 129, 0.4);
+        transition: all 0.3s ease;
+      }
+      #play-button:hover {
+        transform: scale(1.07);
+        box-shadow: 0 6px 20px rgba(255, 64, 129, 0.6);
+        background: linear-gradient(135deg, #ff4081, #f50057);
+      }
+
+      /* 💻 Code Box — GitHub Dark Style */
+      #code {
+        background-color: #0d1117;
+        color: #c9d1d9;
+        border-radius: 10px;
+        padding: 16px;
+        width: 85%;
+        max-width: 650px;
+        margin: 25px auto;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+        font-size: 0.9rem;
+        line-height: 1.4em;
+        white-space: pre-wrap;
+        overflow: hidden;
+      }
+
+      .comments {
+        color: #8b949e;
+      }
+      .keyword {
+        color: #ff7b72;
+        font-weight: 600;
+      }
+      .string {
+        color: #a5d6ff;
+      }
+      .method {
+        color: #d2a8ff;
+      }
+      .variable {
+        color: #79c0ff;
+      }
+
+      .cursor {
+        display: inline-block;
+        width: 8px;
+        background-color: #c9d1d9;
+        margin-left: 3px;
+        animation: blink 0.9s steps(1) infinite;
+      }
+
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+
+      /* ✨ Birthday Message */
+      #hbd-text {
+        font-family: "Pacifico", cursive;
+        font-size: 2.8rem;
+        color: #ff4081;
+        text-shadow: 0 0 8px #ff80ab, 0 0 15px #ff80ab, 0 0 25px #ff4081;
+        margin-top: 25px;
+        opacity: 0;
+        transform: scale(0.9);
+        transition: opacity 1.6s ease, transform 1.6s ease;
+      }
+      #hbd-text.show {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      #birthday-image {
+        max-width: 85%;
+        border-radius: 20px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        margin-top: 20px;
+        opacity: 0;
+        transition: opacity 1.8s ease;
+      }
+      #birthday-image.show {
+        opacity: 1;
+      }
+
+      /* 🧑 Footer */
+      footer {
+        text-align: center;
+        padding: 14px;
+        font-size: 1em;
+        color: #fff;
+        background-color: #007bff;
+        font-family: "Courier New", Courier, monospace;
+        letter-spacing: 1px;
+        font-weight: bold;
+      }
+    </style>
   </head>
 
   <body>
+    <canvas id="confetti-canvas"></canvas>
+
     <div class="section">
-      <div class="columns">
-        <div class="column is-12">
-          <center>
-            <audio controls loop>
-              <source src="song.mp3" type="audio/mpeg" />
-            </audio>
-          </center>
-        </div>
+      <audio id="hbd-audio" loop>
+        <source src="song.mp3" type="audio/mpeg" />
+      </audio>
+      <audio id="type-sound">
+        <source
+          src="https://assets.mixkit.co/sfx/preview/mixkit-soft-typewriter-click-1127.mp3"
+          type="audio/mpeg"
+        />
+      </audio>
+
+      <button id="play-button">🎵 Play Music</button>
+
+      <div id="code">
+        <span id="typed-content"></span><span class="cursor"></span>
       </div>
 
-      <div class="columns">
-        <div id="code" class="column is-6 is-offset-2">
-          <span class="comments">/**</span><br />
-          <span class="comments"
-            >* Today, the 29th day of May, is your birthday.</span
-          ><br />
-          <span class="comments"
-            >* So I created a webpage to celebrate this special day.</span
-          ><br />
-          <span class="comments">*/</span><br />
-          Boy u = <span class="keyword">new</span> Boy(<span class="string"
-            >"Rono"</span
-          >);<br />
-          <span class="comments"
-            >// May 28th, when the bell rang, your age increased</span
-          ><br />
-          Date currentTime = <span class="keyword">new</span> Date(); <br />
-          SimpleDateFormat formatter = <span class="keyword">new</span>
-          SimpleDateFormat(<span class="string"
-            >"yyyy-MM-dd HH:mm:ss"</span
-          >);<br />
-          String dateString = formatter.format(currentTime);<br />
-          if (dateString.equals(<span class="string"
-            >"2020-05-29 00:00:00"</span
-          >)) {<br />
-          &nbsp;&nbsp;u.age++;<br />
-          }<br />
-          <span class="comments"
-            >// My best wishes will be with you simultaneously.</span
-          ><br />
-          <span class="keyword">new</span> Thread() {<br />
-          @Override <br />
-          <span class="comments">// Forever and ever. I wish</span><br />
-          while (true) {<br />
-          <span class="comments">// luckiness,</span><br />
-          &nbsp;&nbsp;u.fortune++;<br />
-          <span class="comments">// happiness,</span><br />
-          &nbsp;&nbsp;u.happiness++;<br />
-          <span class="comments"
-            >// and everything you wish can be achieved.</span
-          ><br />
-          }<br />
-          }.start();<br />
-          <span class="comments">// The last thing I wanna say:</span><br />
-          System.out.println(<span class="string">"Happy Birthday!"</span>);
-        </div>
-
-        <div id="loveHeart" class="is-4 column">
-          <canvas id="garden" style="display: none"></canvas>
-        </div>
-      </div>
-
-      <!-- 🎂 Hidden initially -->
-      <div class="columns" id="photo-section">
-        <div class="column is-12">
-          <center>
-            <img
-              id="birthday-image"
-              src="https://files.catbox.moe/dy4iy4.jpg"
-              alt="Happy Birthday Celebration"
-            />
-          </center>
-        </div>
-      </div>
-
-      <div class="columns">
-        <div class="column is-12" id="copyright">
-          <p>
-            Made with ❤️ by
-            <a
-              href="https://www.facebook.com/smilegupta.1998"
-              target="_blank"
-              >Smile Gupta</a
-            >
-          </p>
-        </div>
-      </div>
+      <h1 id="hbd-text">🎉 Happy 20th Birthday Rono 🎉</h1>
+      <img
+        id="birthday-image"
+        src="https://files.catbox.moe/dy4iy4.jpg"
+        alt="Happy Birthday Rono"
+      />
     </div>
 
+    <footer>Made with ❤️ by Rono</footer>
+
     <script>
-      // ✅ Wait until typing animation finishes, then show the photo
-      $(document).ready(function () {
-        adjustCodePosition();
-        $("#code").typewriter({
-          callback: function () {
-            setTimeout(() => {
-              $("#birthday-image").addClass("show");
-            }, 500);
-          },
-        });
+      const playButton = document.getElementById("play-button");
+      const audio = document.getElementById("hbd-audio");
+      const typeSound = document.getElementById("type-sound");
+      const hbdText = document.getElementById("hbd-text");
+      const birthdayImg = document.getElementById("birthday-image");
+
+      playButton.addEventListener("click", () => {
+        if (audio.paused) {
+          audio.play();
+          playButton.textContent = "⏸ Pause Music";
+        } else {
+          audio.pause();
+          playButton.textContent = "🎵 Play Music";
+        }
       });
+
+      // 💻 Typing animation with real JS code
+      const codeHTML = `
+<span class="comments">// 🎂 My Birthday Script</span><br>
+<span class="keyword">const</span> <span class="variable">today</span> = <span class="keyword">new</span> Date(<span class="string">"2025-10-10"</span>);<br>
+<span class="keyword">let</span> <span class="variable">me</span> = {<br>
+&nbsp;&nbsp;<span class="variable">name</span>: <span class="string">"Rono"</span>,<br>
+&nbsp;&nbsp;<span class="variable">age</span>: <span class="variable">19</span>,<br>
+&nbsp;&nbsp;<span class="method">celebrate</span>: <span class="keyword">function</span>() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this</span>.<span class="variable">age</span>++;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;console.<span class="method">log</span>(<span class="string">\`🎉 It's my birthday! I'm now \${this.age}! 🥳\`</span>);<br>
+&nbsp;&nbsp;}<br>
+};<br>
+
+<span class="comments">// 🕛 Check the date and celebrate</span><br>
+<span class="keyword">if</span> (today.<span class="method">getMonth</span>() === <span class="variable">9</span> && today.<span class="method">getDate</span>() === <span class="variable">10</span>) {<br>
+&nbsp;&nbsp;<span class="variable">me</span>.<span class="method">celebrate</span>();<br>
+} <span class="keyword">else</span> {<br>
+&nbsp;&nbsp;console.<span class="method">log</span>(<span class="string">"Not my birthday yet 😅"</span>);<br>
+}<br>
+
+<span class="comments">// 💬 Send warm wishes</span><br>
+console.<span class="method">log</span>(<span class="string">"Wishing myself happiness, love, and success ahead 💫"</span>);<br>
+
+<span class="comments">// 💻 Remember algorithm logic wins speed races...</span><br>
+console.<span class="method">log</span>(<span class="string">"JS to the world"</span>);`;
+
+      const typedContent = document.getElementById("typed-content");
+      let i = 0;
+      const speed = 25;
+
+      function typeCode() {
+        if (i < codeHTML.length) {
+          typedContent.innerHTML = codeHTML.slice(0, i);
+          typeSound.currentTime = 0;
+          typeSound.play();
+          i++;
+          setTimeout(typeCode, speed);
+        } else {
+          setTimeout(() => {
+            hbdText.classList.add("show");
+            birthdayImg.classList.add("show");
+          }, 600);
+        }
+      }
+
+      typeSound.volume = 0.15;
+      typeCode();
+
+      // 🎊 Confetti on blue margins
+      const canvas = document.getElementById("confetti-canvas");
+      const ctx = canvas.getContext("2d");
+      const colors = ["#ff4081", "#ffd740", "#69f0ae", "#40c4ff", "#ffffff"];
+      let confettis = [];
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      window.addEventListener("resize", resizeCanvas);
+      resizeCanvas();
+
+      function createConfetti() {
+        if (confettis.length < 180) {
+          confettis.push({
+            x:
+              Math.random() < 0.3
+                ? Math.random() * (canvas.width * 0.15)
+                : Math.random() * (canvas.width * 0.15) + canvas.width * 0.85,
+            y: Math.random() * canvas.height,
+            r: Math.random() * 5 + 2,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            speed: Math.random() * 2 + 0.5,
+            tilt: Math.random() * 10 - 5,
+          });
+        }
+      }
+
+      function drawConfetti() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        confettis.forEach((c) => {
+          ctx.beginPath();
+          ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2, false);
+          ctx.fillStyle = c.color;
+          ctx.fill();
+        });
+        updateConfetti();
+      }
+
+      function updateConfetti() {
+        confettis.forEach((c) => {
+          c.y += c.speed;
+          c.x += Math.sin(c.tilt / 10);
+          c.tilt += 0.1;
+          if (c.y > canvas.height) c.y = -10;
+        });
+      }
+
+      function loop() {
+        createConfetti();
+        drawConfetti();
+        requestAnimationFrame(loop);
+      }
+      loop();
     </script>
   </body>
 </html>
