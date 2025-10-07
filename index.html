@@ -34,10 +34,13 @@
         display: none;
       }
 
-      #disc {
-        color: #999;
-        font-weight: 600;
-        font-size: 13px;
+      #birthday-image {
+        display: block;
+        margin: 40px auto;
+        max-width: 400px;
+        width: 80%;
+        border-radius: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       }
     </style>
 
@@ -63,18 +66,11 @@
             <audio controls loop>
               <source src="song.mp3" type="audio/mpeg" />
             </audio>
-            <br />
-            <span id="disc"
-              >Disclaimer: Hey Man, autoplay got stuck again! Just play it
-              manually, scroll your screen, and enjoy! For best experience, use
-              a laptop 🎧</span
-            >
           </center>
         </div>
       </div>
 
-      <br />
-      <br />
+      <br /><br />
 
       <div class="columns">
         <div id="code" class="column is-6 is-offset-2">
@@ -127,6 +123,19 @@
         </div>
         <div id="loveHeart" class="is-4 column">
           <canvas id="garden" style="display: none"></canvas>
+        </div>
+      </div>
+
+      <!-- 🎂 Added Image Section -->
+      <div class="columns">
+        <div class="column is-12">
+          <center>
+            <img
+              id="birthday-image"
+              src="https://files.catbox.moe/dy4iy4.jpg"
+              alt="Happy Birthday Celebration"
+            />
+          </center>
         </div>
       </div>
 
