@@ -36,11 +36,21 @@
 
       #birthday-image {
         display: block;
-        margin: 40px auto;
+        margin: 20px auto;
         max-width: 400px;
         width: 80%;
         border-radius: 20px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      /* ✨ Reduced vertical gaps between sections */
+      .columns {
+        margin-bottom: 0;
+      }
+
+      .section {
+        padding-top: 10px;
+        padding-bottom: 20px;
       }
     </style>
 
@@ -59,7 +69,7 @@
   </head>
 
   <body>
-    <div style="padding-top: 10px;" class="section">
+    <div class="section">
       <div class="columns">
         <div class="column is-12">
           <center>
@@ -70,7 +80,7 @@
         </div>
       </div>
 
-      <br /><br />
+      <!-- Removed <br><br> -->
 
       <div class="columns">
         <div id="code" class="column is-6 is-offset-2">
@@ -126,8 +136,8 @@
         </div>
       </div>
 
-      <!-- 🎂 Added Image Section -->
-      <div class="columns">
+      <!-- 🎂 Image Section (spacing fixed) -->
+      <div class="columns" style="margin-top: 10px;">
         <div class="column is-12">
           <center>
             <img
@@ -139,7 +149,6 @@
         </div>
       </div>
 
-      <br />
       <hr />
 
       <div class="columns">
