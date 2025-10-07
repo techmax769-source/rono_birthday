@@ -20,7 +20,7 @@ This project is a **personalized animated birthday web page** built with
 - 🎶 Autoplaying birthday music  
 - 💻 Real-time **typing code animation**  
 - 🎊 **Falling confetti** effect  
-- 🌈 Glowing text and buttons  
+- 🤞 Glowing text and buttons  
 - 🧑‍💻 A short self-coded birthday console message  
 - 💖 Footer with soft glow copyright
 
