@@ -11,6 +11,12 @@
       rel="stylesheet"
     />
 
+    <!-- Font Awesome for Social Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
     <style>
       body {
         font-family: "Fira Code", monospace;
@@ -148,7 +154,7 @@
       /* 🧑 Footer */
       footer {
         text-align: center;
-        padding: 14px;
+        padding: 16px;
         font-size: 1em;
         color: #fff;
         background-color: #007bff;
@@ -156,6 +162,42 @@
         letter-spacing: 1px;
         font-weight: bold;
         box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
+      }
+
+      footer .socials {
+        margin-top: 8px;
+      }
+
+      footer .socials a {
+        color: #fff;
+        margin: 0 10px;
+        font-size: 1.4em;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      footer .socials a:hover {
+        transform: scale(1.2);
+      }
+
+      footer .fa-facebook:hover {
+        color: #1877f2;
+        text-shadow: 0 0 8px #1877f2;
+      }
+
+      footer .fa-whatsapp:hover {
+        color: #25d366;
+        text-shadow: 0 0 8px #25d366;
+      }
+
+      footer .fa-instagram:hover {
+        color: #e1306c;
+        text-shadow: 0 0 8px #e1306c;
+      }
+
+      footer .fa-twitter:hover {
+        color: #1da1f2;
+        text-shadow: 0 0 8px #1da1f2;
       }
     </style>
   </head>
@@ -189,7 +231,15 @@
       />
     </div>
 
-    <footer>© 2025 Rono. All rights reserved.</footer>
+    <footer>
+      © 2025 Rono. All rights reserved.
+      <div class="socials">
+        <a href="https://facebook.com" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="https://wa.me/" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://twitter.com" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+      </div>
+    </footer>
 
     <script>
       const playButton = document.getElementById("play-button");
