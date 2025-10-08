@@ -55,6 +55,21 @@
         background: linear-gradient(135deg, #ff4081, #f50057);
       }
 
+      /* ⏳ Countdown */
+      #countdown {
+        font-size: 1rem;
+        color: #ffb6c1;
+        text-shadow: 0 0 6px rgba(255, 182, 193, 0.6);
+        font-weight: 600;
+        background: rgba(30, 30, 50, 0.5);
+        padding: 8px 16px;
+        border-radius: 12px;
+        display: inline-block;
+        margin-top: 10px;
+        box-shadow: 0 0 12px rgba(255, 192, 203, 0.4);
+        backdrop-filter: blur(8px);
+      }
+
       /* 💻 Code Box — GitHub Dark Style */
       #code {
         background-color: #0d1117;
@@ -160,6 +175,7 @@
       </audio>
 
       <button id="play-button">🎵 Play Music</button>
+      <div id="countdown">Loading countdown...</div>
 
       <div id="code">
         <span id="typed-content"></span><span class="cursor"></span>
@@ -215,8 +231,8 @@
 <span class="comments">// 💬 Send warm wishes</span><br>
 console.<span class="method">log</span>(<span class="string">"Wishing myself happiness, love, and success ahead 💫"</span>);<br>
 
-<span class="comments">// 💻 Remember algorithm logic wins speed races...</span><br>
-console.<span class="method">log</span>(<span class="string">"JS to the world"</span>);`;
+<span class="comments">// 💻🧠 Remember algorithm logic wins speed races ⚡🏁</span><br>
+console.<span class="method">log</span>(<span class="string">"JS to the world 💻🌍✨ — keep coding 💪🔥"</span>);`;
 
       const typedContent = document.getElementById("typed-content");
       let i = 0;
@@ -295,6 +311,27 @@ console.<span class="method">log</span>(<span class="string">"JS to the world"</
         requestAnimationFrame(loop);
       }
       loop();
+
+      // ⏳ Countdown
+      const countdownEl = document.getElementById("countdown");
+      const birthday = new Date("2025-10-10T00:00:00").getTime();
+
+      setInterval(() => {
+        const now = new Date().getTime();
+        const diff = birthday - now;
+
+        if (diff <= 0) {
+          countdownEl.textContent = "🎉 It's Rono's Birthday! 🥳";
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        countdownEl.textContent = `⏳ ${days}d ${hours}h ${minutes}m ${seconds}s to 🎂`;
+      }, 1000);
     </script>
   </body>
 </html>
